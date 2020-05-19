@@ -44,6 +44,7 @@ To {\em only print} psuedo-codes, use
 \begin{framed}
 For example, when you do 
  
+% ===Print psuedo-codes===
  {\color{red}
  \begin{verbatim}
  \begin{sagesilent}
@@ -56,6 +57,8 @@ For example, when you do
 \]
 \end{verbatim}
 }
+
+% ===Execute codes===
 it produces this
  \begin{sagesilent}
     f(x) = exp(x) * sin(2*x)
@@ -72,7 +75,7 @@ To {\em plot} a graph, use {\color{red}\verb|\sageplot[options]{object, option, 
 \begin{framed}
 Here's a 2D plot of $f$ (that we created earlier in this file) from $-1$ to $1$:
 
-% Print pseudo-codes
+% ===Print pseudo-codes===
 {\color{red}
 \begin{verbatim}
 \begin{figure}[h]		
@@ -82,7 +85,7 @@ Here's a 2D plot of $f$ (that we created earlier in this file) from $-1$ to $1$:
 }
 \end{framed}
 
-% Execute codes
+% ===Execute codes===
 \begin{figure}[h]
 \sageplot[width=0.8\textwidth]{plot(f, -1, 1)}
 \end{figure}
