@@ -1,0 +1,103 @@
+% !TEX TS-program = pdflatexmk
+
+\documentclass{amsart}
+\usepackage{sagetex}
+\usepackage{xcolor, framed}
+
+\begin{document}
+
+Using Sage\TeX, one can use Sage to compute things and put them into
+your \LaTeX{} document. For example, there are
+$\sage{number_of_partitions(1269)}$ integer partitions of $1269$.
+You don't need to compute the number elsewhere, then copy and paste
+it into the paragraph. All you need is to call the command {\color{red}\verb|\sage{number_of_partitions(1269)}|}.
+  
+  
+ To {\em execute and print} a block of sage commands, use
+ {\color{red}
+ \begin{sageverbatim}
+ \begin{sageblock}
+    f(x) = exp(x) * sin(2*x)
+\end{sageblock}
+ \end{sageverbatim}
+}
+
+To {\em execute and hide} a block of sage commands, use 
+ {\color{red}
+ \begin{sageverbatim}
+ \begin{sagesilent}
+    f(x) = exp(x) * sin(2*x)
+\end{sagesilent}
+ \end{sageverbatim}
+}
+
+To {\em only print} psuedo-codes, use
+{\color{red}
+ \begin{verbatim}
+ \begin{sageverbatim}
+    f(x) = exp(x) * sin(2*x)
+\end{sageverbatim}
+ \end{verbatim}
+}
+
+%=============Example: Derivative==========
+\begin{framed}
+For example, when you do 
+ 
+ {\color{red}
+ \begin{verbatim}
+ \begin{sagesilent}
+    f(x) = exp(x) * sin(2*x)
+\end{sagesilent}
+
+\[
+  \frac{\mathrm{d}^{2}}{\mathrm{d}x^{2}} \sage{f(x)} =
+  \sage{diff(f, x, 2)(x)}.
+\]
+\end{verbatim}
+}
+it produces this
+ \begin{sagesilent}
+    f(x) = exp(x) * sin(2*x)
+\end{sagesilent}
+\[
+  \frac{\mathrm{d}^{2}}{\mathrm{d}x^{2}} \sage{f(x)} =
+  \sage{diff(f, x, 2)(x)}.
+\]
+
+\end{framed}
+To {\em plot} a graph, use {\color{red}\verb|\sageplot[options]{object, option, more options}|}, which can draw both 2D and 3D figures. 
+
+%============Example:2d plot==========
+\begin{framed}
+Here's a 2D plot of $f$ (that we created earlier in this file) from $-1$ to $1$:
+
+% Print pseudo-codes
+{\color{red}
+\begin{verbatim}
+\begin{figure}[h]		
+\sageplot[width=0.8\textwidth]{plot(f, -1, 1)}
+\end{figure}
+\end{verbatim}
+}
+\end{framed}
+
+% Execute codes
+\begin{figure}[h]
+\sageplot[width=0.8\textwidth]{plot(f, -1, 1)}
+\end{figure}
+
+
+%============Example:3d plot==========
+% Execute codes
+and an example of a 3D graph. 
+\begin{sagesilent}
+var('s,t');
+p=parametric_plot3d([s*cos(t), s*sin(t),s^2*(sin(t)^2 - cos(t)^2)], (s,0,1),(t, 0, 2*pi), opacity=0.8);
+q= parametric_plot3d([0.5*cos(t), 0.5*sin(t), 0.25*(sin(t)^2 - cos(t)^2)], (t, 0, 2*pi), opacity=0.8, color='red', radius=0.01)
+\end{sagesilent}
+
+\begin{figure}[h]
+\sageplot[width=0.8\textwidth]{p+q, frame=True}
+\end{figure}
+\end{document}
